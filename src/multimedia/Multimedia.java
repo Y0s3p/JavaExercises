@@ -1,64 +1,54 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package multimedia;
 
 /**
- * Created by Yosep on 11/01/2018.
+ * @date 12-ene-2018 @time 20:00:41
+ * @author Silvestre Martínez Jiménez de Cisneros
  */
-
 public class Multimedia {
-
-    String titulo, autor;
-    int duracion;
+    private String titulo, autor;
     private Formato formato;
-
-    public Multimedia(String titulo, String autor, int duracion, Formato formato){
-
+    private int duracion;
+    
+    public Multimedia(String titulo, String autor, Formato formato, int duracion){
         this.titulo = titulo;
         this.autor = autor;
-        this.duracion = duracion;
         this.formato = formato;
-
+        this.duracion = duracion;
     }
-
+    
     public String getTitulo(){
-
         return titulo;
-
     }
-
+    
     public String getAutor(){
-
-        return autor;
-
+        return autor;       
     }
-
-    public int getDuracion(){
-
-        return duracion;
-
-    }
-
+    
     public Formato getFormato(){
-
         return formato;
-
     }
-
+    
+    public int getDuracion(){
+        return duracion;
+    }
+    
     @Override
     public String toString(){
-
-        String informacion;
-
-        informacion = "El autor es " + autor + " el titulo es " + titulo + " la duracion del archivo es " + duracion + " y es en formato " + formato;
-
-        return informacion;
-
+        String fichaTecnica = "Ficha técnica: \n";
+        if(titulo!=null)    fichaTecnica += "Título: "+titulo+"\n";
+        if(autor!=null)     fichaTecnica += "Autor: "+autor+"\n";
+        if(formato!=null)   fichaTecnica += "Formato: "+formato+"\n";
+        if(duracion>0)      fichaTecnica += "Duración: "+duracion+"\n";
+        return fichaTecnica;
     }
-
-    public boolean equal(Object multimedia){
-
-        return true;
-
+    
+    public boolean equals(Multimedia multimedia){
+        return(multimedia!=null && multimedia.getTitulo().equals(titulo) && multimedia.getAutor().equals(autor));
     }
-
-
 }
