@@ -11,6 +11,8 @@ public class Clientes {
 
     private int random;
 
+    private int accion;
+
     CuentaCorriente moneyBank;
 
     public Clientes(CuentaCorriente moneyBank){
@@ -28,7 +30,6 @@ public class Clientes {
         this.name.get(random);
 
     }
-
 
 
 }
