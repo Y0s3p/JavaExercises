@@ -1,5 +1,8 @@
 package banco;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
 /**
  * Created by Yosep on 12/03/2018.
  */
@@ -7,43 +10,60 @@ public class CuentaCorriente {
 
     private int saldo;
 
-    public int fondo;
+    private int accion_random;
 
-    public CuentaCorriente(){
+    PrintWriter escribir = new PrintWriter("MovimientoBanco.txt");
 
-        this.saldo = 10000;
+    public CuentaCorriente(int id_user) throws FileNotFoundException {
 
-        this.fondo = 3000;
-
-    }
-
-    public int getSaldo(){
-
-        return saldo;
+        this.saldo = 0;
+        accion_random = (int) Math.floor(Math.random()*(1+4));
 
     }
 
-    public int getFondo(){
+    public void realizarAccion() throws FileNotFoundException {
 
-        return fondo;
+        if (accion_random == 1){
 
-    }
+            escribir.println("Su saldo es " + saldo);
 
-    public String earnMoney(){
+        }else if (accion_random == 2){
 
-        return "Ha relaidado un ingreso, su saldo es: " + (saldo + 1500);
+            this.saldo = (int) Math.floor(Math.random()*(100+500));
 
-    }
+            escribir.println("Ha realiado su ingreso, su saldo actual es de " + saldo);
 
-    public String receiveMoney(){
+        }else if (accion_random == 3){
 
-        return "Ha retirado su dinero, su saldo es: " + (saldo-800);
+            int retirarDinero = (int) Math.floor(Math.random()*(100+500));
 
-    }
+            if (retirarDinero > saldo){
 
-    public String makeTransfer(){
+                escribir.println("Saldo insuficiente");
 
-        return "Ha hecho un ingreso";
+            }else {
+
+                escribir.println("Ha realiado una estraccion, su saldo actual es de " + saldo);
+
+            }
+
+        }else if (accion_random == 4){
+
+            int transferencia = (int) Math.floor(Math.random()*(100+500));
+
+            if (transferencia > saldo){
+
+                escribir.println("Saldo insuficiente");
+
+            }else {
+
+                this.saldo = saldo - transferencia;
+                escribir.println("Ha realizado su transferencia con exito");
+            }
+
+
+
+        }
 
     }
 

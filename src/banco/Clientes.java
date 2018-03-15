@@ -1,35 +1,50 @@
 package banco;
 
+import java.io.FileNotFoundException;
 import java.util.Hashtable;
 
 /**
  * Created by Yosep on 12/03/2018.
  */
-public class Clientes {
-
-    private Hashtable<Integer,String> name = new Hashtable<>();
+public class Clientes extends Thread{
 
     private int random;
 
-    private int accion;
+    int accion = 0;
 
-    CuentaCorriente moneyBank;
+    int id_user = 0;
 
-    public Clientes(CuentaCorriente moneyBank){
+    public Clientes(int id_user){
 
-        this.moneyBank = moneyBank;
-
-        this.random = (int)Math.floor(Math.random()*(1+5));
-
-        name.put(1, "Silvestre");
-        name.put(2, "Mario");
-        name.put(3, "Rafa");
-        name.put(4, "Sergio");
-        name.put(5, "Yeyo");
-
-        this.name.get(random);
+        accion = (int) Math.floor(Math.random()*(1+3));
+        this.id_user = id_user;
 
     }
 
+    public void run(){
+
+        if(accion == 1){
+            try {
+                CuentaCorriente corriente = new CuentaCorriente(id_user);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        if(accion == 2){
+            try {
+                Deposito deposito = new Deposito(id_user);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        if(accion == 3){
+            try {
+                CuentaAhorro cuentaAhorro = new CuentaAhorro(id_user);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
 
 }
