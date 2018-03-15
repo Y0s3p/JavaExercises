@@ -8,8 +8,6 @@ public class NotaA extends Thread{
 
     private int randomA;
 
-    AnotherClass another = new AnotherClass();
-
     Compas compas;
 
     public String notamusicalA;
